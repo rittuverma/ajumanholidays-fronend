@@ -1,0 +1,204 @@
+/* ============================
+   Review Form Page Container
+=============================== */
+.review-form-page {
+  max-width: 900px;
+  margin: 60px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ============================
+   Left Form Section
+=============================== */
+.form-section {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.7s ease;
+}
+
+.form-section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #0077cc;
+}
+
+.form-subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Form Elements */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.review-form input,
+.review-form textarea {
+  margin-top: 6px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #fafafa;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.15);
+  outline: none;
+}
+
+.review-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Submit Button */
+.review-form button {
+  padding: 12px;
+  background: linear-gradient(90deg, #0077cc, #00c6ff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.25s ease;
+}
+
+.review-form button:hover {
+  background: linear-gradient(90deg, #005fa3, #0099cc);
+  transform: translateY(-2px);
+}
+
+.review-form button:active {
+  transform: translateY(0);
+}
+
+/* ============================
+   Star Rating
+=============================== */
+.star-rating {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.star {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.star:hover {
+  transform: scale(1.2);
+  color: #ffcc00;
+}
+
+.star.filled {
+  color: #ffcc00;
+}
+
+/* ============================
+   Right Reviews Section
+=============================== */
+.reviews-list {
+  background: #fdfdfd;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.reviews-list h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #0077cc;
+}
+
+.empty-state {
+  color: #777;
+  font-style: italic;
+}
+
+.review-card {
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.review-card h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #0077cc;
+}
+
+.review-card p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.review-card small {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.stars {
+  color: #ffcc00;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+/* ============================
+   Animations
+=============================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================
+   Responsive
+=============================== */
+@media (max-width: 768px) {
+  .review-form-page {
+    grid-template-columns: 1fr;
+  }
+}

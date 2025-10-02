@@ -1,0 +1,155 @@
+/* --- CSS Variables for Consistency --- */
+:root {
+    --bg-light: #f0f3f6;
+    --color-primary: #1e3a8a; /* Deep Blue */
+    --color-accent: #ff5757; /* Trendy Coral */
+    --shadow-light: #ffffff;
+    --shadow-dark: #d9dbde;
+    --text-dark: #4a4a4a;
+    --border-radius-default: 12px;
+}
+
+.login-container {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-dark);
+}
+
+/* --- Login Card (The Neumorphic centerpiece) --- */
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background-color: var(--bg-light);
+    border-radius: 30px;
+    /* Prominent Floating Neumorphic Card */
+    box-shadow: 15px 15px 30px var(--shadow-dark), -15px -15px 30px var(--shadow-light);
+    text-align: center;
+}
+
+.login-card h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+}
+
+/* --- Form and Inputs --- */
+.login-card form {
+    text-align: left;
+}
+
+.login-card label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 0.95rem;
+}
+
+.login-card input[type="email"],
+.login-card input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: var(--border-radius-default);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Inset shadow for input fields (pressed look) */
+    box-shadow: inset 3px 3px 5px var(--shadow-dark), inset -3px -3px 5px var(--shadow-light);
+    transition: all 0.2s;
+}
+
+.login-card input:focus {
+    outline: none;
+    /* Accent ring on focus */
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light), 0 0 0 2px var(--color-accent); 
+}
+
+/* --- Submit Button --- */
+.login-card button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
+    background-color: var(--color-accent);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    /* Raised button effect with accent shadow */
+    box-shadow: 6px 6px 12px rgba(255, 87, 87, 0.4), -6px -6px 12px rgba(255, 87, 87, 0.4);
+}
+
+.login-card button[type="submit"]:hover:not(:disabled) {
+    background-color: #cc4545;
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 15px rgba(255, 87, 87, 0.6);
+}
+
+.login-card button[type="submit"]:active:not(:disabled) {
+    box-shadow: none; /* Press effect */
+    transform: translateY(1px);
+}
+
+.login-card button[type="submit"]:disabled {
+    background-color: #a0a4aa;
+    cursor: not-allowed;
+    box-shadow: 3px 3px 6px var(--shadow-dark);
+}
+
+/* --- Footer Links --- */
+.login-footer {
+    margin-top: 25px;
+    font-size: 0.95rem;
+}
+
+.login-footer a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+    color: var(--color-accent);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 25px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--color-primary);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 500px) {
+    .login-card {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .login-card h2 {
+        font-size: 1.8rem;
+    }
+}

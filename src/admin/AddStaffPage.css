@@ -1,0 +1,50 @@
+.add-staff-page {
+  padding: 30px;
+  max-width: 500px;
+  margin: 0 auto;
+  background: #e9e9ed;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(239, 234, 234, 0.4);
+}
+
+.add-staff-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4cafef;
+}
+
+.staff-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.staff-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.staff-form input,
+.staff-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 5px;
+}
+
+.staff-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #4cafef, #0077cc);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.staff-form button:hover {
+  background: linear-gradient(90deg, #0077cc, #4cafef);
+}

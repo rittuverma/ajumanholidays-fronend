@@ -1,0 +1,110 @@
+/* ContactWidget.css */
+.contact-widget {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: auto;
+  font-family: inherit;
+}
+
+/* circular icon button */
+.contact-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(180deg,#ffffff,#f3f3f3);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.contact-toggle:hover,
+.contact-toggle:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  outline: none;
+}
+
+/* Popover that appears above the icon */
+.contact-popover {
+  position: absolute;
+  left: 0;
+  bottom: 70px;           /* sits above the button */
+  width: 300px;
+  max-width: calc(100vw - 40px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  padding: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  animation: popFade .12s ease-out;
+}
+
+/* little arrow */
+.contact-popover::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  bottom: -8px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* animation */
+@keyframes popFade {
+  from { opacity: 0; transform: translateY(6px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Make sure ContactInfo content looks compact inside popover.
+   ContactInfo already uses .contact-us-box. If not, adjust selectors. */
+.contact-popover .contact-us-box {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* If ContactInfo has internal classes, override to fit popover */
+.contact-popover .contact-us-box h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
+}
+.contact-popover .contact-us-box .contact-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.95rem;
+  padding: 6px 0;
+}
+.contact-popover .contact-us-box .contact-icon {
+  color: #c77a1a;
+  min-width: 20px;
+}
+
+/* Mobile: center popover above the icon and make it full-width-ish */
+@media (max-width: 480px) {
+  .contact-popover {
+    left: 50%;
+    right: auto;
+    bottom: 84px;
+    transform: translateX(-50%);
+    width: calc(100vw - 32px);
+  }
+  .contact-popover::after {
+    right: 50%;
+    transform: translateX(50%) rotate(45deg);
+  }
+}

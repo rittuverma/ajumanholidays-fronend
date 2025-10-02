@@ -1,0 +1,186 @@
+/* --- CSS Variables for Consistency --- */
+:root {
+    --bg-light: #f0f3f6;
+    --color-primary: #1e3a8a; /* Deep Blue */
+    --color-accent: #ff5757; /* Trendy Coral */
+    --shadow-light: #ffffff;
+    --shadow-dark: #d9dbde;
+    --text-dark: #4a4a4a;
+    --border-radius-default: 12px;
+}
+
+.payment-page {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    min-height: 100vh;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-dark);
+}
+
+.payment-page h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* --- Main Form/Container Card --- */
+.payment-form {
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    background-color: var(--bg-light);
+    border-radius: 25px;
+    /* Main Floating Neumorphic Card */
+    box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+}
+
+/* --- Summary Details Section --- */
+.payment-summary {
+    width: 100%;
+    max-width: 500px;
+    background-color: #e6e9ec; /* Slightly darker background for summary area */
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+    /* Soft inset look */
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+}
+
+.payment-summary strong {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* --- Form Inputs (Neumorphic Inset) --- */
+.payment-form input[type="text"],
+.payment-form input[type="email"],
+.payment-form input[type="tel"] {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: var(--border-radius-default);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    font-size: 1rem;
+    box-sizing: border-box;
+
+    /* Inset shadow for input fields (pressed look) */
+    box-shadow: inset 3px 3px 5px var(--shadow-dark), inset -3px -3px 5px var(--shadow-light);
+    transition: all 0.2s;
+}
+
+.payment-form input:focus {
+    outline: none;
+    /* Accent ring on focus */
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light), 0 0 0 2px var(--color-accent); 
+}
+
+/* --- Payment Methods (Radio Buttons) --- */
+.payment-methods {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    background-color: #e6e9ec;
+    box-shadow: inset 2px 2px 4px var(--shadow-dark);
+}
+
+.payment-methods label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--color-primary);
+    transition: color 0.2s;
+}
+
+.payment-methods label:hover {
+    color: var(--color-accent);
+}
+
+.payment-methods input[type="radio"] {
+    /* Hide native radio button */
+    display: none;
+}
+
+.payment-methods label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: var(--bg-light);
+    /* Convex shadow for the radio button sphere */
+    box-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+    transition: all 0.2s;
+}
+
+.payment-methods input[type="radio"]:checked + label::before {
+    /* Checked state: Inset + accent dot */
+    background-color: var(--color-accent);
+    box-shadow: inset 1px 1px 3px var(--shadow-dark), inset -1px -1px 3px var(--shadow-light);
+    border: 3px solid var(--bg-light);
+}
+
+/* --- Submit Button (Raised Accent) --- */
+.payment-form button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: var(--border-radius-default);
+    background-color: var(--color-accent);
+    color: var(--text-light);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    /* Raised button effect with accent shadow */
+    box-shadow: 6px 6px 12px rgba(255, 87, 87, 0.4), -6px -6px 12px rgba(255, 87, 87, 0.4);
+}
+
+.payment-form button[type="submit"]:hover {
+    background-color: #cc4545;
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 15px rgba(255, 87, 87, 0.6);
+}
+
+.payment-form button[type="submit"]:active {
+    box-shadow: none; /* Press effect */
+    transform: translateY(1px);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+    .payment-form {
+        padding: 25px;
+        border-radius: 15px;
+    }
+    
+    .payment-summary {
+        font-size: 0.95rem;
+    }
+
+    .payment-methods {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .payment-form button[type="submit"] {
+        font-size: 1rem;
+    }
+}

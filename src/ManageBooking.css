@@ -1,0 +1,66 @@
+.manage-booking-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("./background-pattern.jpg") no-repeat center center/cover;
+  padding: 40px;
+}
+
+.manage-booking-form {
+  background-color: rgba(255, 255, 255, 0.92);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.manage-booking-form h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.manage-booking-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.manage-booking-form button {
+  background-color: #ff6b00;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.booking-details {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.booking-actions {
+  margin-top: 15px;
+}
+
+.rearrange-btn {
+  background-color: #007bff;
+  color: white;
+  margin-right: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+}

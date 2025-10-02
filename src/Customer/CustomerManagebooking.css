@@ -1,0 +1,340 @@
+/* --- CSS Variables for Consistency --- */
+:root {
+    --bg-light: #f0f3f6;
+    --color-primary: #1e3a8a; /* Deep Blue (Action/Primary Info) */
+    --color-accent: #ff5757; /* Trendy Coral (Highlight/Destructive Action) */
+    --color-confirmed: #10b981; /* Green for Confirmed */
+    --color-pending: #fbbf24; /* Yellow for Pending */
+    --shadow-light: #ffffff;
+    --shadow-dark: #d9dbde;
+    --text-dark: #4a4a4a;
+    --border-radius-default: 12px;
+}
+
+.manage-bookings-container {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    min-height: calc(100vh - 100px); /* Adjust for header/footer */
+    padding: 40px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: var(--text-dark);
+}
+
+.manage-bookings-container h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.no-bookings {
+    text-align: center;
+    padding: 50px;
+    background-color: #e6e9ec;
+    border-radius: var(--border-radius-default);
+    box-shadow: inset 3px 3px 6px var(--shadow-dark);
+    font-size: 1.1rem;
+    color: #888;
+}
+
+/* --- Bookings Table Styling --- */
+.bookings-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px; /* Spacing between rows */
+}
+
+.bookings-table thead th {
+    background-color: var(--color-primary);
+    color: var(--shadow-light);
+    padding: 15px 20px;
+    font-weight: 600;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.bookings-table thead th:first-child {
+    border-radius: var(--border-radius-default) 0 0 var(--border-radius-default);
+}
+.bookings-table thead th:last-child {
+    border-radius: 0 var(--border-radius-default) var(--border-radius-default) 0;
+}
+
+/* Table Rows - Neumorphic Look */
+.bookings-table tbody tr {
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius-default);
+    /* Soft shadow for the row */
+    box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+.bookings-table tbody tr:hover {
+    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+    transform: translateY(-2px);
+}
+
+.bookings-table tbody td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    font-size: 0.95rem;
+    border: none;
+}
+
+.bookings-table tbody tr td:first-child {
+    border-top-left-radius: var(--border-radius-default);
+    border-bottom-left-radius: var(--border-radius-default);
+}
+.bookings-table tbody tr td:last-child {
+    border-top-right-radius: var(--border-radius-default);
+    border-bottom-right-radius: var(--border-radius-default);
+}
+
+/* --- Status Badges --- */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-confirmed {
+    background-color: var(--color-confirmed);
+    color: white;
+}
+
+.status-cancelled {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.status-pending {
+    background-color: var(--color-pending);
+    color: var(--text-dark);
+}
+
+/* --- Action Buttons --- */
+.bookings-table td button {
+    margin-right: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-btn {
+    background-color: var(--color-primary);
+    color: white;
+    /* Soft raised shadow */
+    box-shadow: 3px 3px 6px #1c3373; 
+}
+
+.view-btn:hover {
+    background-color: #1c3373;
+    transform: translateY(-1px);
+    box-shadow: 5px 5px 10px #1c3373; 
+}
+
+.cancel-btn {
+    background-color: var(--color-accent);
+    color: white;
+    /* Soft raised shadow */
+    box-shadow: 3px 3px 6px rgba(255, 87, 87, 0.4); 
+}
+
+.cancel-btn:hover {
+    background-color: #cc4545;
+    transform: translateY(-1px);
+    box-shadow: 5px 5px 10px rgba(255, 87, 87, 0.6);
+}
+
+/* --- Modal Styling (Neumorphic) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 450px;
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 25px;
+    /* Prominent Floating Neumorphic Card */
+    box-shadow: 15px 15px 30px var(--shadow-dark), -15px -15px 30px var(--shadow-light);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content h3 {
+    font-family: 'Nunito', sans-serif;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--shadow-dark);
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* Modal Inputs */
+.modal-content input[type="date"],
+.modal-content input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: var(--border-radius-default);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    box-sizing: border-box;
+    /* Inset shadow for input fields */
+    box-shadow: inset 3px 3px 5px var(--shadow-dark), inset -3px -3px 5px var(--shadow-light);
+    transition: all 0.2s;
+}
+
+.modal-content input:focus {
+    outline: none;
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light), 0 0 0 2px var(--color-accent);
+}
+
+.modal-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+/* Close/Cancel Button in Modal */
+.close-btn {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    /* Secondary Neumorphic Button */
+    box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+}
+
+.close-btn:hover {
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* --- Responsive Table Fixes --- */
+@media (max-width: 900px) {
+    .bookings-table thead th, .bookings-table tbody td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stacked look for mobile */
+    .bookings-table {
+        display: block;
+        border-spacing: 0;
+    }
+
+    .bookings-table thead {
+        display: none; /* Hide header on small screens */
+    }
+
+    .bookings-table tbody, .bookings-table tr, .bookings-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .bookings-table tbody tr {
+        margin-bottom: 25px;
+        box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+    }
+    
+    .bookings-table tbody tr:hover {
+        transform: none; /* Disable lift on hover in stacked view */
+    }
+
+    .bookings-table td {
+        text-align: right;
+        border-bottom: 1px solid #e1e4e7;
+        position: relative;
+        padding-left: 50%;
+        font-size: 1rem;
+    }
+
+    /* Simulate table headers using pseudo-elements */
+    .bookings-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: 600;
+        color: var(--color-primary);
+        font-size: 0.9rem;
+    }
+
+    /* Apply labels to TDs */
+    .bookings-table tbody tr td:nth-child(1):before { content: "Route:"; }
+    .bookings-table tbody tr td:nth-child(2):before { content: "Date:"; }
+    .bookings-table tbody tr td:nth-child(3):before { content: "Status:"; }
+    .bookings-table tbody tr td:nth-child(4):before { content: "Actions:"; }
+    
+    .bookings-table tbody tr td:first-child,
+    .bookings-table tbody tr td:last-child {
+        border-radius: 0;
+    }
+    .bookings-table tbody tr td:last-child {
+        border-bottom: none;
+    }
+    
+    .bookings-table td .view-btn, .bookings-table td .cancel-btn {
+        margin-top: 10px;
+        display: block;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    /* To address missing labels in the React component for the responsive table fix,
+       I am adding them in the `tr` structure below for clarity on how they should be added.
+       In a real app, you would add `data-label` attributes to the JSX `<td>` elements.
+       E.g., `<td data-label="Route:">{b.origin} → {b.destination}</td>`
+    */
+}

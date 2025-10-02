@@ -1,0 +1,199 @@
+.routes-page {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  background: #f3f4f6;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Left side form */
+.routes-form {
+  flex: 1;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  animation: slideInLeft 0.8s ease-in-out;
+  border-left: 4px solid #2563eb;
+}
+
+.routes-form h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.routes-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.routes-form input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.routes-form input:focus {
+  border: 1px solid #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
+  outline: none;
+}
+
+.routes-form button {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+  animation: pulse 2s infinite;
+}
+
+.routes-form button:hover {
+  background: #059669;
+  transform: scale(1.05);
+}
+
+/* Right side table */
+.routes-table-wrapper {
+  flex: 2;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  animation: slideInRight 0.8s ease-in-out;
+  border-left: 4px solid #10b981;
+}
+
+.routes-table-wrapper h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.routes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.routes-table th,
+.routes-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.routes-table th {
+  background: #e2e8f0;
+  color: #1e293b;
+  font-weight: bold;
+}
+
+.routes-table tr {
+  transition: background 0.3s ease;
+}
+
+.routes-table tr:hover {
+  background: #f9fafb;
+}
+
+.routes-table button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Edit button */
+.routes-table button:first-child {
+  background: #2563eb;
+  color: white;
+}
+
+.routes-table button:first-child:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
+
+/* Delete button */
+.routes-table button:last-child {
+  background: #ef4444;
+  color: white;
+}
+
+.routes-table button:last-child:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+/* Route images */
+.route-img {
+  width: 70px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.route-img:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

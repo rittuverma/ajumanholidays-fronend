@@ -1,0 +1,73 @@
+.bus-details-page, .bus-info-page {
+  padding: 20px;
+  background: #f9fafc;
+  min-height: 100vh;
+}
+
+.bus-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.bus-actions input {
+  padding: 8px;
+  width: 300px;
+}
+
+.add-bus-btn, .save-btn {
+  background: #27ae60;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-bus-btn:hover, .save-btn:hover {
+  background: #219150;
+}
+
+.bus-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.bus-table th, .bus-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.bus-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 500px;
+}
+.edit-btn, .delete-btn {
+  padding: 6px 12px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background: #007bff;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #0056b3;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #a71d2a;
+}

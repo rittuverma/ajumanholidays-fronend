@@ -1,0 +1,339 @@
+/* Dashboard Layout */
+.dashboard-layout {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  padding: 25px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 25px;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  background: #1e2a38;
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.dashboard-sidebar h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 10px;
+}
+
+.dashboard-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-sidebar li {
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: background 0.3s;
+}
+
+.dashboard-sidebar li:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Main Layout */
+.dashboard-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 25px;
+  align-items: flex-start;
+}
+
+/* Header */
+.dashboard-header {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c3e50;
+  color: #fff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.dashboard-header h2 {
+  margin: 0;
+}
+
+.dashboard-header button {
+  background: #e74c3c;
+  border: none;
+  padding: 10px 18px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dashboard-header button:hover {
+  background: #c0392b;
+}
+
+/* Cards */
+.dashboard-card {
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+/* Forms inside cards */
+.dashboard-card input,
+.dashboard-card select,
+.dashboard-card textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.dashboard-card button {
+  background: #3498db;
+  border: none;
+  padding: 10px 16px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dashboard-card button:hover {
+  background: #2980b9;
+}
+
+/* Filters */
+.filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  grid-column: 1 / -1;
+}
+
+.filters-bar input,
+.filters-bar select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Routes */
+.routes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.route-card {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.route-card:hover {
+  transform: translateY(-3px);
+}
+
+.route-card img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.route-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.route-buttons button {
+  flex: 1;
+  padding: 8px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+/* Customers & Bookings */
+.customers-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.customers-table th,
+.customers-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.customers-table th {
+  background: #f2f2f2;
+}
+
+.customers-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+.booking-filters {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.booking-filters input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.export-button {
+  margin: 10px 0;
+  background: #16a085;
+}
+
+.export-button:hover {
+  background: #13856c;
+}
+
+/* Charts */
+.dashboard-charts {
+  grid-column: 1 / -1;
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .filters-bar {
+    flex-direction: column;
+  }
+
+  .booking-filters {
+    flex-direction: column;
+  }
+}
+/* Sidebar Dropdown */
+.dashboard-sidebar .has-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dashboard-sidebar .has-dropdown .dropdown {
+  list-style: none;
+  padding-left: 15px;
+  margin-top: 6px;
+  display: none;
+}
+
+.dashboard-sidebar .has-dropdown.open .dropdown {
+  display: block;
+}
+
+.dashboard-sidebar .has-dropdown .dropdown li {
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dashboard-sidebar .has-dropdown .dropdown li:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Sidebar Dropdown */
+.dashboard-sidebar .has-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dashboard-sidebar .has-dropdown .dropdown {
+  list-style: none;
+  padding-left: 15px;
+  margin-top: 6px;
+  display: none;
+}
+
+.dashboard-sidebar .has-dropdown.open .dropdown {
+  display: block;
+}
+
+.dashboard-sidebar .has-dropdown .dropdown li {
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dashboard-sidebar .has-dropdown .dropdown li:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.dashboard-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-sidebar li {
+  margin: 12px 0;
+}
+
+.dashboard-sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.dashboard-sidebar a:hover {
+  background: #1e2a38;
+  color: white;
+}

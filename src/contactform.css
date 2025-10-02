@@ -1,0 +1,134 @@
+/* General Layout */
+.contact-page {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #f0f7ff, #ffffff);
+  color: #333;
+}
+
+/* Header */
+.main-header {
+  background-color: #002244;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.logo-title {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.main-nav {
+  margin-top: 10px;
+}
+
+.main-nav a {
+  color: white;
+  margin: 0 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Section */
+.contact-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  background-image: url("./assets/images/aboutBg.jpeg");
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(5px);
+}
+
+.contact-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  text-align: center;
+  animation: fadeInUp 0.7s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-card h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.subtext {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* Form Styling */
+.contact-form .form-group {
+  margin-right: 20px;
+  text-align: left;
+}
+
+.contact-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+}
+
+.send-button {
+  background-color: #0078d7;
+  color: white;
+  padding: 6px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  min-width: 100px;
+}
+
+.send-button:hover {
+  background-color: #005fa3;
+}
+
+/* Footer */
+.main-footer {
+  background-color: #002244;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-links a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
