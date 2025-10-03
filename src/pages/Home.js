@@ -15,23 +15,23 @@ import ContactWidget from "../components/ContactWidget";
 
 
 
-const inputStyle = {
-  width: "100%",
-  padding: "10px",
-  borderRadius: "8px",
-  border: "1px solid #ccc",
-  fontSize: "1rem",
-};
+// const inputStyle = {
+//   width: "100%",
+//   padding: "10px",
+//   borderRadius: "8px",
+//   border: "1px solid #ccc",
+//   fontSize: "1rem",
+// };
 
-const buttonStyle = {
-  backgroundColor: "#007bff",
-  color: "#fff",
-  padding: "12px 30px",
-  fontSize: "1rem",
-  border: "none",
-  borderRadius: "8px",
-  cursor: "pointer",
-};
+// const buttonStyle = {
+//   backgroundColor: "#007bff",
+//   color: "#fff",
+//   padding: "12px 30px",
+//   fontSize: "1rem",
+//   border: "none",
+//   borderRadius: "8px",
+//   cursor: "pointer",
+// };
 
 const heroImages = ["/slide1.jpeg", "/slide2.jpeg", "/slide3.jpeg",];
 const heroSliderSettings = {
@@ -113,12 +113,7 @@ const handleSubmit = async e => {
 };
 
 const navigate = useNavigate();
- const handleFormSubmit = (e) => {
-  e.preventDefault();
-
-  const query = new URLSearchParams(formData).toString();
-  navigate(`/routes?${query}`);
-}; 
+ 
   const [filteredRoutes, setFilteredRoutes] = useState(allRoutes);
 
   const handleLocationFilter = (e) => {
@@ -166,7 +161,7 @@ const navigate = useNavigate();
         </div>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/manage-bookings">ManageBooking</Link>
+          <Link to="/manage-bookings">Manage Booking</Link>
           <Link to="/about">About</Link>
         </nav>
       </header>

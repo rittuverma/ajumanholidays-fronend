@@ -41,7 +41,7 @@ const AllTicketsPage = () => {
     };
 
     fetchTickets();
-  }, []);
+  }, [id]);
 
   if (loading) return <p>Loading tickets...</p>;
 

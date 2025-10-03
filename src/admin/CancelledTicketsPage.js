@@ -37,7 +37,7 @@ const CancelledTicketsPage = () => {
     };
 
     fetchCancelled();
-  }, []);
+  }, [id]);
 
   if (loading) return <p>Loading cancelled tickets...</p>;
 

@@ -3,7 +3,7 @@ import "./DashboardOverview.css";
 import { API_URL } from "../config";
 import {
   BarChart, Bar, PieChart, Pie, Cell,
-  XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, LineChart, Line
+  XAxis, YAxis, Tooltip, ResponsiveContainer
 } from "recharts";
 
 export default function DashboardOverview() {

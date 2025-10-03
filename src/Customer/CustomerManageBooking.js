@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import CustomerHeader from "./CustomerHeader";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../config";
-import { AuthContext } from "../Context/AuthContext";
+// import { AuthContext } from "../Context/AuthContext";
 import "./CustomerManagebooking.css";
 
 

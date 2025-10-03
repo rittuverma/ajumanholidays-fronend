@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// src/admin/BusEditPage.js
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../config";
@@ -9,21 +10,24 @@ const BusEditPage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState(null);
 
-  useEffect(() => {
-    fetchBus();
-  }, []);
-
-  const fetchBus = async () => {
+  // fetchBus defined before useEffect and memoized so it has a stable identity
+  const fetchBus = useCallback(async () => {
+    if (!id) return;
     try {
       const res = await axios.get(`${API_URL}/buses/${id}`);
       setForm(res.data);
     } catch (err) {
       console.error("Error fetching bus:", err);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchBus();
+  }, [fetchBus]);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -34,6 +38,7 @@ const BusEditPage = () => {
       navigate("/admin/bus-details");
     } catch (err) {
       console.error("Error updating bus:", err);
+      alert("Failed to update bus. See console for details.");
     }
   };
 
@@ -44,12 +49,12 @@ const BusEditPage = () => {
       <h2>Edit Bus</h2>
       <form onSubmit={handleSubmit}>
         <label>Bus Name:</label>
-        <input name="name" value={form.name} onChange={handleChange} required />
+        <input name="name" value={form.name || ""} onChange={handleChange} required />
 
         <label>Serial Number:</label>
         <input
           name="serialNumber"
-          value={form.serialNumber}
+          value={form.serialNumber || ""}
           onChange={handleChange}
           required
         />
@@ -57,13 +62,13 @@ const BusEditPage = () => {
         <label>Registration Number:</label>
         <input
           name="registrationNumber"
-          value={form.registrationNumber}
+          value={form.registrationNumber || ""}
           onChange={handleChange}
           required
         />
 
         <label>Type:</label>
-        <input name="type" value={form.type} onChange={handleChange} />
+        <input name="type" value={form.type || ""} onChange={handleChange} />
 
         <label>Seat Capacity (1–100):</label>
         <input
@@ -71,15 +76,15 @@ const BusEditPage = () => {
           name="seatCapacity"
           min="1"
           max="100"
-          value={form.seatCapacity}
+          value={form.seatCapacity ?? ""}
           onChange={handleChange}
         />
 
         <label>From:</label>
-        <input name="from" value={form.from} onChange={handleChange} required />
+        <input name="from" value={form.from || ""} onChange={handleChange} required />
 
         <label>To:</label>
-        <input name="to" value={form.to} onChange={handleChange} required />
+        <input name="to" value={form.to || ""} onChange={handleChange} required />
 
         <label>Driver Name:</label>
         <input

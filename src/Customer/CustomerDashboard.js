@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // import CustomerProfile from "../components/CustomerProfile"; // Navbar with profile icon
-import { API_URL } from "../config";
+// import { API_URL } from "../config";
 import "./CustomerDashboard.css";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
@@ -22,23 +22,23 @@ import ContactWidget from "../components/ContactWidget";
 
 
 
-const inputStyle = {
-  width: "100%",
-  padding: "10px",
-  borderRadius: "8px",
-  border: "1px solid #ccc",
-  fontSize: "1rem",
-};
+// const inputStyle = {
+//   width: "100%",
+//   padding: "10px",
+//   borderRadius: "8px",
+//   border: "1px solid #ccc",
+//   fontSize: "1rem",
+// };
 
-const buttonStyle = {
-  backgroundColor: "#007bff",
-  color: "#fff",
-  padding: "12px 30px",
-  fontSize: "1rem",
-  border: "none",
-  borderRadius: "8px",
-  cursor: "pointer",
-};
+// const buttonStyle = {
+//   backgroundColor: "#007bff",
+//   color: "#fff",
+//   padding: "12px 30px",
+//   fontSize: "1rem",
+//   border: "none",
+//   borderRadius: "8px",
+//   cursor: "pointer",
+// };
 
 // Hero slider images
 const heroImages = ["/slide1.jpeg", "/slide2.jpeg", "/slide3.jpeg",];
@@ -125,7 +125,7 @@ const handleKeyToggle = (e) => {
     date: "",
     seats: 1,
   });
-  const [lastBooking, setLastBooking] = useState(null);
+  const [lastBooking] = useState(null);
 
   // Routes filter state
   const [filteredRoutes, setFilteredRoutes] = useState(allRoutes);

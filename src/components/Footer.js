@@ -5,14 +5,14 @@ import "../App.css";
 import { API_URL } from "../config";
 
 const Footer = () => {
-  const [routes, setRoutes] = useState([]);
+  const  setRoutes = useState([]);
 
   useEffect(() => {
     fetch(`${API_URL}/routes`)
       .then((res) => res.json())
       .then((data) => setRoutes(data))
       .catch((err) => console.error("❌ Fetch error:", err));
-  }, []);
+  }, [setRoutes]);
 
   return (
     <footer className="site-footer">

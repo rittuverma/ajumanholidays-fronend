@@ -1,5 +1,5 @@
 // src/pages/SelectSeats.jsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./SelectSeats.css";
 
@@ -10,11 +10,12 @@ export default function SelectSeats() {
 
   // --- Hooks (always declared at top-level) ---
   // booking state: either from location.state or from sessionStorage fallback
-  const [booking, setBooking] = useState(() => {
+  const [booking] = useState(() => {
     try {
       const fromState = location.state?.booking || null;
       if (fromState) return fromState;
-      const persisted = typeof window !== "undefined" && sessionStorage.getItem("booking");
+      const persisted =
+        typeof window !== "undefined" && sessionStorage.getItem("booking");
       return persisted ? JSON.parse(persisted) : null;
     } catch (err) {
       return null;
@@ -24,7 +25,49 @@ export default function SelectSeats() {
   // selected seats
   const [selected, setSelected] = useState([]);
 
-  // If you later need other state (loading, error) add them here too
+  // Layout constants (always same order)
+  const leftSinglesCount = 5;
+  const middlePairsRows = 12;
+  const upperRows = 6;
+  const upperLeftSingleRows = 5;
+
+  // seatsRequested derived from booking (safe even if booking is null)
+  const seatsRequested = useMemo(
+    () => Number(booking?.seatsRequested ?? booking?.seats ?? 1),
+    [booking]
+  );
+
+  // seat prices memoized (doesn't depend on booking)
+  const seatPrices = useMemo(() => {
+    const prices = {};
+    for (let r = 1; r <= middlePairsRows; r++) {
+      prices[`M${r}A`] = r <= 8 ? 1309 : 1179;
+      prices[`M${r}B`] = r <= 8 ? 1369 : 1109;
+    }
+    for (let i = 1; i <= leftSinglesCount; i++) {
+      prices[`L${i}`] = 2519 - (i - 1) * 80;
+    }
+    for (let r = 1; r <= upperRows; r++) {
+      prices[`U${r}_1`] = 2399 - (r - 1) * 40;
+      prices[`U${r}_2`] = 2179 - (r - 1) * 40;
+    }
+    for (let i = 1; i <= upperLeftSingleRows; i++) {
+      prices[`S${i}`] = 2519 - (i - 1) * 80;
+    }
+    return prices;
+  }, [leftSinglesCount, middlePairsRows, upperRows, upperLeftSingleRows]);
+
+  // initially booked seats (from booking or default sample)
+  const initiallyBooked = useMemo(
+    () => booking?.alreadyBooked ?? ["M3A", "M7B", "U2_2"],
+    [booking]
+  );
+
+  // total amount computed from selected & seatPrices
+  const totalAmount = useMemo(
+    () => selected.reduce((sum, id) => sum + (seatPrices[id] || 0), 0),
+    [selected, seatPrices]
+  );
 
   // --- Effects ---
   // ensure we persist booking and redirect if missing
@@ -42,49 +85,29 @@ export default function SelectSeats() {
     }
   }, [booking, navigate]);
 
-  // --- If booking still null (because redirect hasn't happened yet) return null to avoid rendering UI briefly ---
+  // If booking is missing, show nothing (effect above will redirect). This return is AFTER hooks.
   if (!booking) return null;
 
-  // --- Layout params and helpers (computed, not hooks) ---
-  const leftSinglesCount = 5;
-  const middlePairsRows = 12;
-  const upperRows = 6;
-  const upperLeftSingleRows = 5;
-  const seatsRequested = Number(booking?.seatsRequested || booking?.seats || 1);
-
-  // sample seat prices (replace with data from backend)
-  const seatPrices = {};
-  for (let r = 1; r <= middlePairsRows; r++) {
-    seatPrices[`M${r}A`] = r <= 8 ? 1309 : 1179;
-    seatPrices[`M${r}B`] = r <= 8 ? 1369 : 1109;
-  }
-  for (let i = 1; i <= leftSinglesCount; i++) {
-    seatPrices[`L${i}`] = 2519 - (i - 1) * 80;
-  }
-  for (let r = 1; r <= upperRows; r++) {
-    seatPrices[`U${r}_1`] = 2399 - (r - 1) * 40;
-    seatPrices[`U${r}_2`] = 2179 - (r - 1) * 40;
-  }
-  for (let i = 1; i <= upperLeftSingleRows; i++) {
-    seatPrices[`S${i}`] = 2519 - (i - 1) * 80;
-  }
-
-  const initiallyBooked = booking?.alreadyBooked || ["M3A", "M7B", "U2_2"];
-
+  // toggle seat selection using functional updates to avoid stale closure issues
   const toggleSeat = (id) => {
+    // if seat already booked, ignore
     if (initiallyBooked.includes(id)) return;
-    if (selected.includes(id)) {
-      setSelected((prev) => prev.filter((s) => s !== id));
-      return;
-    }
-    if (selected.length >= seatsRequested) {
-      alert(`You can select only ${seatsRequested} seat(s).`);
-      return;
-    }
-    setSelected((prev) => [...prev, id]);
-  };
 
-  const totalAmount = selected.reduce((sum, id) => sum + (seatPrices[id] || 0), 0);
+    setSelected((prev) => {
+      // if already selected -> remove
+      if (prev.includes(id)) {
+        return prev.filter((s) => s !== id);
+      }
+      // if selection limit reached -> keep prev and notify
+      if (prev.length >= seatsRequested) {
+        // small UX: show alert. You can replace this with toast/snackbar later.
+        alert(`You can select only ${seatsRequested} seat(s).`);
+        return prev;
+      }
+      // otherwise add
+      return [...prev, id];
+    });
+  };
 
   const handlePayNow = () => {
     if (selected.length !== seatsRequested) {
@@ -92,7 +115,11 @@ export default function SelectSeats() {
       return;
     }
     const payload = { ...booking, selectedSeats: selected, amount: totalAmount };
-    sessionStorage.removeItem("booking");
+    try {
+      sessionStorage.removeItem("booking");
+    } catch (err) {
+      // ignore
+    }
     navigate("/payments", { state: { booking: payload } });
   };
 
@@ -102,9 +129,13 @@ export default function SelectSeats() {
       <header className="ss-header">
         <h1>Select Seats</h1>
         <div className="ss-info">
-          <div>{booking.origin} → {booking.destination}</div>
-          <div>{booking.date}</div>
-          <div>Choose <strong>{seatsRequested}</strong> seats</div>
+          <div>
+            {booking.origin || booking.from} → {booking.destination || booking.to}
+          </div>
+          <div>{booking.date || booking.travelDate}</div>
+          <div>
+            Choose <strong>{seatsRequested}</strong> seats
+          </div>
         </div>
       </header>
 
@@ -125,6 +156,7 @@ export default function SelectSeats() {
                       className={`seat long ${booked ? "booked" : selected.includes(id) ? "selected" : ""}`}
                       onClick={() => toggleSeat(id)}
                       disabled={booked}
+                      aria-label={`Seat ${id}`}
                     />
                     <div className="price">₹{seatPrices[id]}</div>
                   </div>
@@ -146,6 +178,7 @@ export default function SelectSeats() {
                         className={`seat pair ${leftBooked ? "booked" : selected.includes(leftId) ? "selected" : ""}`}
                         onClick={() => toggleSeat(leftId)}
                         disabled={leftBooked}
+                        aria-label={`Seat ${leftId}`}
                       />
                       <div className="price">₹{seatPrices[leftId]}</div>
                     </div>
@@ -155,6 +188,7 @@ export default function SelectSeats() {
                         className={`seat pair ${rightBooked ? "booked" : selected.includes(rightId) ? "selected" : ""}`}
                         onClick={() => toggleSeat(rightId)}
                         disabled={rightBooked}
+                        aria-label={`Seat ${rightId}`}
                       />
                       <div className="price">₹{seatPrices[rightId]}</div>
                     </div>
@@ -171,7 +205,7 @@ export default function SelectSeats() {
           </div>
 
           <div className="card-body upper-body">
-           <div className="left-column">
+            <div className="left-column">
               {Array.from({ length: upperLeftSingleRows }).map((_, i) => {
                 const id = `S${i + 1}`;
                 const booked = initiallyBooked.includes(id);
@@ -181,6 +215,7 @@ export default function SelectSeats() {
                       className={`seat long ${booked ? "booked" : selected.includes(id) ? "selected" : ""}`}
                       onClick={() => toggleSeat(id)}
                       disabled={booked}
+                      aria-label={`Seat ${id}`}
                     />
                     <div className="price">₹{seatPrices[id]}</div>
                   </div>
@@ -197,6 +232,7 @@ export default function SelectSeats() {
                       className={`seat long ${booked ? "booked" : selected.includes(id) ? "selected" : ""}`}
                       onClick={() => toggleSeat(id)}
                       disabled={booked}
+                      aria-label={`Seat ${id}`}
                     />
                     <div className="price">₹{seatPrices[id]}</div>
                   </div>
@@ -214,6 +250,7 @@ export default function SelectSeats() {
                       className={`seat long ${booked ? "booked" : selected.includes(id) ? "selected" : ""}`}
                       onClick={() => toggleSeat(id)}
                       disabled={booked}
+                      aria-label={`Seat ${id}`}
                     />
                     <div className="price">₹{seatPrices[id]}</div>
                   </div>
@@ -226,7 +263,7 @@ export default function SelectSeats() {
 
       <footer className="ss-footer">
         <div className="selected-summary">
-          <strong>Selected:</strong> {selected.join(", ") || "None"}
+          <strong>Selected:</strong> {selected.length > 0 ? selected.join(", ") : "None"}
           <span className="total">Total: ₹{totalAmount}</span>
         </div>
         <div className="actions">
